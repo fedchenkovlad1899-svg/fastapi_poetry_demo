@@ -9,6 +9,7 @@ class UserCreateSchema(BaseModel):
     fullname: str
     email: str
     sex: UserSexEnum
+    status: UserStatusEnum = UserStatusEnum.ACTIVE
 
 
 class UserResponseSchema(BaseModel):

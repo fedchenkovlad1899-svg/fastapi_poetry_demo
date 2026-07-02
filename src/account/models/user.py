@@ -1,6 +1,6 @@
 from typing import Annotated
 from src.account.constants import UserSexEnum,UserStatusEnum
-from sqlalchemy.orm import Mapped
+from sqlalchemy.orm import Mapped,mapped_column
 
 
 from src.core.orm import (
@@ -23,7 +23,8 @@ class User(Base):
     sex: Mapped[Annotated[str, UserSexEnum]]
     email: Mapped[string_64_unique]
     password: Mapped[string_64_nullable]
-    status: Mapped[Annotated[str, UserStatusEnum]]
+    status: Mapped[Annotated[str, UserStatusEnum]] = mapped_column(default=UserStatusEnum.ACTIVE)
+
 
 
 
