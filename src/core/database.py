@@ -1,14 +1,11 @@
-from sqlalchemy.orm import DeclarativeBase
+from typing import AsyncGenerator
+
+from sqlalchemy import create_engine
+from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
+from sqlalchemy.orm import DeclarativeBase, Session, sessionmaker
 
 from src.account.models.user import Base
 from src.core.config import settings
-from sqlalchemy import create_engine
-from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
-from sqlalchemy.orm import sessionmaker, Session
-from typing import AsyncGenerator
-
-
-
 
 sync_engine = create_engine(settings.db.db_sync_url,echo=True)
 async_engine = create_async_engine(settings.db.db_async_url, echo=True)

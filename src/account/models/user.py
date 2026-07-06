@@ -1,16 +1,11 @@
 from typing import Annotated
-from src.account.constants import UserSexEnum,UserStatusEnum
-from sqlalchemy.orm import Mapped,mapped_column
 
+from sqlalchemy.orm import Mapped, mapped_column
 
-from src.core.orm import (
-    primary_integer,
-    string_64_nullable,
-    string_64_not_nullable,
-    simple_integer_nullable,
-    string_64_unique,
-    Base,
-)
+from src.account.constants import UserSexEnum, UserStatusEnum
+from src.core.orm import (Base, primary_integer, simple_integer_nullable,
+                          string_64_not_nullable, string_64_nullable,
+                          string_64_unique)
 
 
 class User(Base):

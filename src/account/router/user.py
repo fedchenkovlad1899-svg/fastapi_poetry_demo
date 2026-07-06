@@ -1,12 +1,14 @@
-from fastapi import APIRouter,Depends,HTTPException
 from http import HTTPMethod
 
+from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.ext.asyncio.session import AsyncSession
 
 from src.account.dependencies import get_user_service
-from src.account.schemas.users import UserResponseSchema, UserCreateSchema
-from src.account.services.user import UserService, UserAlreadyExist, UserNotFound
-from src.core.database import get_sync_session, get_async_session
+from src.account.schemas.users import (UserCreateSchema, UserResponseSchema,
+                                       UserUpdateSchema)
+from src.account.services.user import (UserAlreadyExist, UserNotFound,
+                                       UserService)
+from src.core.database import get_async_session, get_sync_session
 
 router = APIRouter(
     prefix="/users",
@@ -61,7 +63,7 @@ async def get_users(
 )
 async def update_user(
     user_id: int,
-    user_schema: UserCreateSchema,
+    user_schema: UserUpdateSchema,
     user_service: UserService = Depends(get_user_service)
 ):
     try:
