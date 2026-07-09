@@ -1,11 +1,8 @@
 from datetime import datetime
-from typing import Optional, Annotated
-from sqlalchemy import String,text
-from sqlalchemy.orm import mapped_column
-from sqlalchemy.orm import Mapped,DeclarativeBase
+from typing import Annotated, Optional
 
-
-
+from sqlalchemy import String, text
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
 primary_integer = Annotated[int,mapped_column(primary_key=True,autoincrement=True)]
 string_64_nullable = Annotated[str,mapped_column(String(64), nullable=True)]

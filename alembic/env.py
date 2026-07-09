@@ -1,12 +1,12 @@
 from logging.config import fileConfig
-from sqlalchemy import engine_from_config
-from sqlalchemy import pool
+
+from sqlalchemy import engine_from_config, pool
+
 from alembic import context
-
-
 
 config = context.config
 from src.core.config import settings
+
 section = config.config_ini_section
 config.set_section_option(section, "host", settings.db.host)
 config.set_section_option(section, "port", str(settings.db.port))
@@ -24,8 +24,8 @@ if config.config_file_name is not None:
 # target_metadata = mymodel.Base.metadata
 
 
-from src.core.orm import Base
 from src.account.models.user import User
+from src.core.orm import Base
 
 target_metadata = Base.metadata
 

@@ -1,10 +1,11 @@
 from typing import Any, Sequence
 
+from sqlalchemy import Row, RowMapping, ScalarResult, select
 from sqlalchemy.engine.result import ScalarResult
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy import select, ScalarResult, Row, RowMapping
+
 from src.account.models import User
-from src.account.schemas.users import UserCreateSchema
+from src.account.schemas.users import UserCreateSchema, UserUpdateSchema
 
 
 class UserRepository:
@@ -52,7 +53,7 @@ class UserRepository:
     async def update(
          self,
          user: User,
-         user_schema: UserCreateSchema,
+         user_schema: UserUpdateSchema,
     ) -> User:
         for name, value in user_schema.model_dump().items():
             setattr(user, name, value)

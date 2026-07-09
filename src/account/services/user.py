@@ -1,7 +1,8 @@
 from sqlalchemy.ext.asyncio import AsyncSession
+
 from src.account.models import User
 from src.account.repositories.user import UserRepository
-from src.account.schemas.users import UserCreateSchema
+from src.account.schemas.users import UserCreateSchema, UserUpdateSchema
 
 
 class UserAlreadyExist(Exception):
@@ -37,7 +38,7 @@ class UserService:
     async def get_all(self)  -> list[User]:
         return list(await self.repository.get_all())
 
-    async def update(self, user_id: int, user_schema: UserCreateSchema) -> User:
+    async def update(self, user_id: int, user_schema: UserUpdateSchema) -> User:
         user = await self.get_one(user_id=user_id)
         return await self.repository.update(user=user, user_schema=user_schema)
 
